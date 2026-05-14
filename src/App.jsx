@@ -30,16 +30,31 @@ async function fetchStudents() {
     }, [])
 //Handle Input Changes//
 function handleChange(event){
-  setFormData({
-    ...formData,
-    [event.target.name]: event.target.value,
-  });
-}
+      setFormData({
+        ...formData,
+        [event.target.name]: event.target.value,
+      });
+    }
+//Add CREATE Student//
+async function addStudent(event) {
+    event.preventDefault();
+    try {
+      const {error} = await supabase.from("Directory").insert([formData]);
+      if(error){
+        console.log(error);
+      } else {
+        fetchStudents();
+        setFormData({ name: "", major: "", year: "",});
+      }
+    } catch (error) {
+      console.log(error)
+    } 
+    }
 
   return (
     <div>
       <h1>React CRUD W6D3</h1>
-      <StudentForm formData={formData} handleChange={handleChange} />
+      <StudentForm formData={formData} handleChange={handleChange} addStudent={addStudent} />
       <StudentCard students={students} />
     </div>
   )
