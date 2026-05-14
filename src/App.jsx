@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import { supabase } from './utils/supabase'
-import StudentCard from './components/StudentCard';
+
 
 function App() {
 //READ from Database(table)//
@@ -28,7 +28,11 @@ async function fetchStudents() {
   return (
     <div>
       <h1>React CRUD W6D3</h1>
-      <StudentCard students={students} />
+      {students.map((student)=>(
+        <div key={student.id}>
+          {student.name}
+        </div>
+      ))}
     </div>
   )
 }
