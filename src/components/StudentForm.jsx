@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-function StudentForm({ formData, handleChange, addStudent }) {
+function StudentForm({ formData, handleChange, addStudent, editingId }) {
   return (
     <div>
         <form onSubmit={addStudent}>
@@ -14,7 +14,7 @@ function StudentForm({ formData, handleChange, addStudent }) {
             <label htmlFor="year">Year: 
             <input type="text" name="year" id="year" value={formData.year} onChange={handleChange}/>
             </label>
-            <button type="submit">Add Student</button>
+            <button type="submit">{editingId ? "Update Student" : "Add Student"}</button>
         </form>
     </div>
   )

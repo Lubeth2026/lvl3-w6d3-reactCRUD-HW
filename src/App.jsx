@@ -11,6 +11,8 @@ function App() {
    const [students, setStudents] = useState([]);
 //StudentForm State//
    const [formData, setFormData] = useState({ name: "", major: "", year: "",});
+//Editing Update State//
+   const [editingId, setEditingId] = useState(null);
   
 async function fetchStudents() {
   try {
@@ -39,23 +41,56 @@ function handleChange(event){
 async function addStudent(event) {
     event.preventDefault();
     try {
-      const {error} = await supabase.from("Directory").insert([formData]);
+      if(editingId){
+      const {error} = await supabase.from("Directory").update(formData).eq("id", editingId);
       if(error){
         console.log(error);
       } else {
         fetchStudents();
+        setEditingId(null);
         setFormData({ name: "", major: "", year: "",});
+      }} else {
+        const {error} = await supabase.from("Directory").insert([formData]);
+        if(error){
+          console.log(error);
+        } else {
+          fetchStudents();
+          setFormData({ name: "", major: "", year: "",});
+        }
       }
     } catch (error) {
       console.log(error)
     } 
     }
+//DELETE Function//
+async function deleteStudent(id) {
+    try {
+      const {error} = await supabase.from("Directory").delete().eq("id", id);
+      if(error){
+        console.log(error);
+      } else {
+        fetchStudents();
+      }
+    } catch (error) {
+      console.log(error)
+    }
+}
+//UPDATE Student Function//
+function updateStudent(student){
+  setFormData({
+    name: student.name,
+    major: student.major,
+    year: student.year,
+  });
+  setEditingId(student.id);
+}
 
   return (
     <div>
       <h1>React CRUD W6D3</h1>
-      <StudentForm formData={formData} handleChange={handleChange} addStudent={addStudent} />
-      <StudentCard students={students} />
+      <StudentForm formData={formData} handleChange={handleChange} addStudent={addStudent} 
+      editingId={editingId}/>
+      <StudentCard students={students} updateStudent={updateStudent} deleteStudent={deleteStudent} />
     </div>
   )
 }
