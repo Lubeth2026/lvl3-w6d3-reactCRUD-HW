@@ -1,1 +1,13 @@
 
+h1{
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+.card{
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 6px;
+  padding: 20px;
+  margin-top: 15px;
+}
