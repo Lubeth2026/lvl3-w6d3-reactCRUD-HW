@@ -1,16 +1,39 @@
-# React + Vite
+# React Student Directory App
+Live URL: "https://github.com/Lubeth2026/lvl3-w6d3-reactCRUD-HW.git"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project is a React CRUD app connected to Supabase.
+The app allows users to: 
+- View all students
+- Add anew student 
+- Update existing student info
+- Delete students from the directory
+The student data is stored in a Supabase database table called Directory.
 
-Currently, two official plugins are available:
+### Features
+CREATE:  Users can add a new student using a controlled form.
+READ:  Student data is fetched from Supabase & displayed on the page.
+UPDATE: Users can edit a student's info & save changes.
+DELETE:  Users can remove a student from the directory.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+#### How to Test CRUD Features
+Test CREATE
+- Fill out form
+- Click "Add Student"
+- New student should appear on the page
+Test READ
+- Existing students should display automatically when the app loads
+Test UPDATE
+- Click the "Edit" button
+- Update student info in the form
+- Click "Update Student"
+- Student info should update on the page
+Test DELETE
+- Click the "X" button
+- Student should be removed from the page & database
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##### Installation
+1. Install Dependencies
+npm install
+2. Start the server
+npm run dev
