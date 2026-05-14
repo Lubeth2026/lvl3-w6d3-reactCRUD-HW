@@ -1,5 +1,6 @@
 
 import React from "react";
+import StudentForm from "./StudentForm";
 
 function StudentCard({ students }) {
   return (
